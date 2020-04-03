@@ -5,13 +5,19 @@ class StudentsController < ApplicationController
   end
 
   def show
-    @student = Student.find(params[:id])
+   @student = Student.find(params[:id])
   end
 
   def new
+    @student = Student.new
   end
 
-  def create
-  end
+ def create
+  @student = Student.new
+  @student.first_name = params[:first_name]
+  @student.last_name = params[:last_name]
+  @student.save
+  redirect_to "/students/#{@student.id}"
+ end
 
 end
